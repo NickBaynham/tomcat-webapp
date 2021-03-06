@@ -8,6 +8,6 @@
    tasks:
    - name: War file transfer
      copy:
-       src: deployments/web-application.war
+       src: web-application.war
        dest: /var/lib/tomcat9/webapps/webapplication.war       
 
