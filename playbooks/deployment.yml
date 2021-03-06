@@ -1,0 +1,13 @@
+---
+ - name: Deployment of Web Application
+   hosts: application_servers
+   become: yes
+   vars:
+   - warName: webapplication.war
+   - warRemotePath: /home/ansible     
+   tasks:
+   - name: War file transfer
+     copy:
+       src: deployments/web-application.war
+       dest: /var/lib/tomcat9/webapps/webapplication.war       
+

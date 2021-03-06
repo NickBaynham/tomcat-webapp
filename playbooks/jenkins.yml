@@ -1,0 +1,35 @@
+---
+ - name: Jenkins Installation
+   hosts: localhost
+   gather_facts: no
+   become: yes
+   tasks:
+   - debug:
+   - name: apt update
+     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+   - name: get jenkins key
+     apt_key: 
+        url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+        state: present
+   - name: jenkins repository list
+     apt_repository:
+        repo: deb http://pkg.jenkins.io/debian-stable binary/
+        state: present
+   - name: apt update 2
+     apt: update_cache=yes force_apt_get=yes
+   - name: install Java
+     apt:
+        name: openjdk-8-jdk
+        state: present
+   - name: install Jenkins
+     apt:
+        name: jenkins
+        state: present
+   - name: install maven
+     apt:
+        name: maven
+        state: present
+   - name: install git
+     apt:
+        name: git
+        state: present     

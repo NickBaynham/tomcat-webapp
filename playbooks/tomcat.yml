@@ -1,0 +1,20 @@
+---
+ - name: Install and Configure Tomcat
+   hosts: application_servers
+   gather_facts: no
+   become: yes
+   tasks:
+   - name: Apt Update
+     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+   - name: Install tomcat9
+     apt:
+        name: tomcat9
+        state: present
+   - name: Install tomcat9-admin
+     apt:
+        name: tomcat9-admin
+        state: present
+   - name: Start tomcat
+     service:
+        name=tomcat9
+        state=started
